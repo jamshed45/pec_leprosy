@@ -214,7 +214,7 @@ class DashboardController extends Controller
                 $today_punjab_refferals_user = $today_punjab_refferals_user->whereYear('pec_refferal_forms.created_at', $get_year);
             }
             $today_punjab_refferals_user = $today_punjab_refferals_user->where('pec_refferal_forms.province_id', 1);
-            $today_punjab_refferals_user = $today_punjab_refferals_user->where('pec_refferal_forms.verify', 1);
+            // $today_punjab_refferals_user = $today_punjab_refferals_user->where('pec_refferal_forms.verify', 1);
             $today_punjab_refferals_user = $today_punjab_refferals_user->join('users', 'users.id', '=', 'pec_refferal_forms.user_id')
                 ->join('pec_center', 'pec_center.center_id', '=', 'pec_refferal_forms.center_id')
                 ->groupBy('pec_refferal_forms.center_id')
@@ -236,7 +236,7 @@ class DashboardController extends Controller
                 $today_kpk_refferals_user = $today_kpk_refferals_user->whereYear('pec_refferal_forms.created_at', $get_year);
             }
             $today_kpk_refferals_user = $today_kpk_refferals_user->where('pec_refferal_forms.province_id', 2);
-            $today_kpk_refferals_user = $today_kpk_refferals_user->where('pec_refferal_forms.verify', 1);
+            // $today_kpk_refferals_user = $today_kpk_refferals_user->where('pec_refferal_forms.verify', 1);
             $today_kpk_refferals_user = $today_kpk_refferals_user->join('users', 'users.id', '=', 'pec_refferal_forms.user_id')
                 ->join('pec_center', 'pec_center.center_id', '=', 'pec_refferal_forms.center_id')
                 ->groupBy('pec_refferal_forms.center_id')
@@ -260,7 +260,7 @@ class DashboardController extends Controller
                 $today_punjab_patient_entries_user = $today_punjab_patient_entries_user->whereYear('pec_center_patients_record.created_at', $get_year);
             }
             $today_punjab_patient_entries_user = $today_punjab_patient_entries_user->where('pec_center_patients_record.province_id', 1);
-            $today_punjab_patient_entries_user = $today_punjab_patient_entries_user->where('pec_center_patients_record.verify', 1);
+            // $today_punjab_patient_entries_user = $today_punjab_patient_entries_user->where('pec_center_patients_record.verify', 1);
             $today_punjab_patient_entries_user = $today_punjab_patient_entries_user->join('users', 'users.id', '=', 'pec_center_patients_record.user_id')
                 ->join('pec_center', 'pec_center.center_id', '=', 'pec_center_patients_record.center_id')
                 ->groupBy('pec_center_patients_record.center_id')
@@ -280,7 +280,7 @@ class DashboardController extends Controller
                 $today_kpk_patient_entries_user = $today_kpk_patient_entries_user->whereYear('pec_center_patients_record.created_at', $get_year);
             }
             $today_kpk_patient_entries_user = $today_kpk_patient_entries_user->where('pec_center_patients_record.province_id', 2);
-            $today_kpk_patient_entries_user = $today_kpk_patient_entries_user->where('pec_center_patients_record.verify', 1);
+            // $today_kpk_patient_entries_user = $today_kpk_patient_entries_user->where('pec_center_patients_record.verify', 1);
             $today_kpk_patient_entries_user = $today_kpk_patient_entries_user->join('users', 'users.id', '=', 'pec_center_patients_record.user_id')
                 ->join('pec_center', 'pec_center.center_id', '=', 'pec_center_patients_record.center_id')
                 ->groupBy('pec_center_patients_record.center_id')
@@ -322,7 +322,7 @@ class DashboardController extends Controller
             if ($get_year) {
                 $refractive_errors = $refractive_errors->whereYear('created_at', $get_year);
             }
-            $refractive_errors = $refractive_errors->where('verify', 1);
+            // $refractive_errors = $refractive_errors->where('verify', 1);
             $refractive_errors = $refractive_errors->whereIn('patient_type', ['presbyopia-nv', 'distance-vision-dv'])
                 ->get()
                 ->toArray();
@@ -339,7 +339,7 @@ class DashboardController extends Controller
             if ($get_year) {
                 $referrals = $referrals->whereYear('created_at', $get_year);
             }
-            $referrals = $referrals->where('verify', 1);
+            // $referrals = $referrals->where('verify', 1);
             $referrals = $referrals->whereIn('patient_type', ['cataract-surgery', 'glaucoma-surgery', 'trichiasis-surgery', 'pterygium-surgery', 'minor-surgery', 'investigations'])
                 ->get()
                 ->toArray();
@@ -356,7 +356,7 @@ class DashboardController extends Controller
             if ($get_year) {
                 $cataract_referrals = $cataract_referrals->whereYear('created_at', $get_year);
             }
-            $cataract_referrals = $cataract_referrals->where('verify', 1);
+            // $cataract_referrals = $cataract_referrals->where('verify', 1);
             $cataract_referrals = $cataract_referrals->whereIn('patient_type', ['cataract-surgery'])
                 ->get()
                 ->toArray();
@@ -373,7 +373,7 @@ class DashboardController extends Controller
             if ($get_year) {
                 $confirmed_cataracts = $confirmed_cataracts->whereYear('created_at', $get_year);
             }
-            $confirmed_cataracts = $confirmed_cataracts->where('verify', 1);
+            // $confirmed_cataracts = $confirmed_cataracts->where('verify', 1);
             $confirmed_cataracts = $confirmed_cataracts->whereIn('patient_type', ['with-iol', 'witout-iol'])
                 ->get()
                 ->toArray();
@@ -390,7 +390,7 @@ class DashboardController extends Controller
             if ($get_year) {
                 $persons_with_disability = $persons_with_disability->whereYear('created_at', $get_year);
             }
-            $persons_with_disability = $persons_with_disability->where('verify', 1);
+            // $persons_with_disability = $persons_with_disability->where('verify', 1);
             $persons_with_disability = $persons_with_disability->whereIn('patient_type', ['person-with-disability'])
                 ->get()
                 ->toArray();
@@ -407,7 +407,7 @@ class DashboardController extends Controller
             if ($get_year) {
                 $province_wise_pie = $province_wise_pie->whereYear('created_at', $get_year);
             }
-            $province_wise_pie = $province_wise_pie->where('verify', 1);
+            // $province_wise_pie = $province_wise_pie->where('verify', 1);
             $province_wise_pie = $province_wise_pie->whereIn('patient_type', ['new-patients', 'old-patients', 'leprosy-patients', 'number-of-children-under-six', 'cataract-surgery', 'glaucoma-surgery', 'trichiasis-surgery', 'pterygium-surgery', 'minor-surgery', 'investigations', 'with-iol', 'witout-iol'])
                 ->get()
                 ->toArray();
@@ -424,7 +424,7 @@ class DashboardController extends Controller
             if ($get_year) {
                 $get_patient_entries = $get_patient_entries->whereYear('created_at', $get_year);
             }
-            $get_patient_entries = $get_patient_entries->where('verify', 1);
+            // $get_patient_entries = $get_patient_entries->where('verify', 1);
             $get_patient_entries = $get_patient_entries->get()->toArray();
 
             if ($get_patient_entries) {
