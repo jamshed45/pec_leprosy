@@ -175,7 +175,7 @@ $user = Auth::user();
               <li><a href="{{ URL::to('tour-dairy/') }}">All Tour Dairies</a></li>
               <li><a href="{{ URL::to('tour-dairy/create') }}">Add Tour Dairy
                 @php
-                  $date = date("F", strtotime(" +1 months"));
+                  $date = date('F');
                 echo $date;
                 @endphp</a></li>
             </ul>
