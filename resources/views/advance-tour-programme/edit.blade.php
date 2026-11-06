@@ -11,14 +11,14 @@
                       ->pluck('meta_value')
                       ->ToArray();
     $user_centers = DB::table('pec_center')
-              ->whereIn('center_id', $user_centers_ids)->get(); 
+              ->whereIn('center_id', $user_centers_ids)->get();
               $center_session = session()->get('center_info');
 
 
 @endphp
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper"> 
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header sty-one">
       <h1>Advance Tour Programme</h1>
@@ -28,7 +28,7 @@
         <li><i class="fa fa-angle-right"></i> Advance Tour Programme</li>
       </ol>
     </div>
-    
+
     <div class="content">
 
           <!-- will be used to show any messages -->
@@ -43,16 +43,16 @@
               </div>
 
               <div class="card-body">
-      
+
         <!-- if there are creation errors, they will show here -->
-                      
+
         <form action="{{ route('advance-tour-programme.update', $monthly_detail->atp_form_id) }}" method="POST" autocomplete="off">
           @csrf
           @method('PUT')
           <input type="hidden" name="atp_form_id" value="{{ $monthly_detail['atp_form_id']  }}" />
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 stick-head-table-container">
-    
+
               @php
               $month = date('m', strtotime($monthly_detail['entry_month']));
               $year = date('y', strtotime($monthly_detail['entry_month']));
@@ -65,7 +65,7 @@
                     <tr>
                       <th scope="col"><div style="width:80px !important">Date</div></th>
                       <th scope="col"><div style="width:150px">Place</div></th>
-    
+
                       <th scope="col"><div style="width:130px">Mode of Travelling</div></th>
                       <th scope="col"><div style="width:110px">Leprosy Medicines to Reg. NO.</div></th>
                       <th scope="col"><div style="width:110px">Under Surv. Reg No.</div></th>
@@ -91,24 +91,24 @@
                     </tr>
                   </thead>
                   <tbody>
-           
+
                   @php
-      
+
                   ($monthly_detail['submit_status'])?'1':'0';
-                  
+
                   $atp_detail =  json_decode($monthly_detail['atp_detail'], true);
-                  
+
                   $total_atp = 0;
                   // for ($i = 1; $i <= 1; $i++)
                   for ($i = 1; $i <= $num; $i++)
                     {
-                      
+
                     $mktime = mktime(0, 0, 0, $month, $i, $year);
                     $date = date("d-M-Y", $mktime);
                     $dates_month[$i] = $date;
-                
+
                     // {{ $atp_detail->description[strtotime($dates_month[$i])] }}
-                    @endphp  
+                    @endphp
                       <tr>
                         <th scope="row"><small>{{ $dates_month[$i] }}</small></th>
                         <td>
@@ -126,6 +126,7 @@
                             <option "MotorBike" @selected(isset($atp_detail['mode_traveling'][strtotime($dates_month[$i])]) && $atp_detail['mode_traveling'][strtotime($dates_month[$i])] == "MotorBike")>MotorBike</option>
                             <option "Bike" @selected(isset($atp_detail['mode_traveling'][strtotime($dates_month[$i])]) && $atp_detail['mode_traveling'][strtotime($dates_month[$i])] == "Bike")>Bike</option>
                             <option "Walk" @selected(isset($atp_detail['mode_traveling'][strtotime($dates_month[$i])]) && $atp_detail['mode_traveling'][strtotime($dates_month[$i])] == "Walk")>Walk</option>
+                            <option "Public Transport" @selected(isset($atp_detail['mode_traveling'][strtotime($dates_month[$i])]) && $atp_detail['mode_traveling'][strtotime($dates_month[$i])] == "Public Transport")>Public Transport</option>
                           </select>
                         </td>
                         <td>
@@ -138,7 +139,7 @@
                           <input type="text" name="atp_detail[contacts_reg_no][{{ strtotime($dates_month[$i]) }}]" class="form-control" value="{{ isset($atp_detail['contacts_reg_no'][strtotime($dates_month[$i])])?$atp_detail['contacts_reg_no'][strtotime($dates_month[$i])]:'' }}">
                         </td>
                         <td>
-                          <input type="text" name="atp_detail[smear_reg_no][{{ strtotime($dates_month[$i]) }}]" class="form-control"  value="{{ isset($atp_detail['smear_reg_no'][strtotime($dates_month[$i])])?$atp_detail['smear_reg_no'][strtotime($dates_month[$i])]:'' }}">  
+                          <input type="text" name="atp_detail[smear_reg_no][{{ strtotime($dates_month[$i]) }}]" class="form-control"  value="{{ isset($atp_detail['smear_reg_no'][strtotime($dates_month[$i])])?$atp_detail['smear_reg_no'][strtotime($dates_month[$i])]:'' }}">
                         </td>
                         <td>
                           <input type="text" name="atp_detail[pod_reg_no][{{ strtotime($dates_month[$i]) }}]" class="form-control" value="{{ isset($atp_detail['pod_reg_no'][strtotime($dates_month[$i])])?$atp_detail['pod_reg_no'][strtotime($dates_month[$i])]:'' }}">
@@ -154,7 +155,7 @@
                           {{ (isset($atp_detail['social_work'][strtotime($dates_month[$i])]))?'checked':''; }}>
                         </td>
                         <td>
-                          <input type="checkbox" name="atp_detail[pec_work][{{ strtotime($dates_month[$i]) }}]" value="1" 
+                          <input type="checkbox" name="atp_detail[pec_work][{{ strtotime($dates_month[$i]) }}]" value="1"
                           {{ (isset($atp_detail['pec_work'][strtotime($dates_month[$i])]))?'checked':''; }}>
                         </td>
                         <td>
@@ -162,7 +163,7 @@
                         </td>
                         <td>
                           <input type="text" name="atp_detail[survey_name_school][{{ strtotime($dates_month[$i]) }}]" class="form-control" value="{{ isset($atp_detail['survey_name_school'][strtotime($dates_month[$i])])?$atp_detail['survey_name_school'][strtotime($dates_month[$i])]:'' }}">
-                  
+
                         </td>
                         <td>
                           <input type="text" name="atp_detail[any_other_work][{{ strtotime($dates_month[$i]) }}]" class="form-control" value="{{ isset($atp_detail['any_other_work'][strtotime($dates_month[$i])])?$atp_detail['any_other_work'][strtotime($dates_month[$i])]:'' }}">
@@ -187,14 +188,14 @@
 
                       </tr>
                     @php
-                 
+
                     }
                   @endphp
-           
+
                   </tbody>
                 </table>
               </div>
-                
+
             </div>
           </div>
 
@@ -213,7 +214,7 @@
             <div class="col-12 col-sm-12 col-md-12 my-3" id="sign-container-outer" data-signature="{{ ($monthly_detail->signature)?'true':'false'; }}">
               @if ($monthly_detail->signature)
               <div class="sign-container">
-              
+
                 <img src="{{ $monthly_detail->signature }}" class="border" />
               </div>
               @endif
@@ -239,27 +240,27 @@
               @endif
               @if($user->hasRole('pec-data-verifier'))
                 @if($monthly_detail['submit_status'] && $monthly_detail['verify_status'] && $monthly_detail['approve_status'])
-                <button type="button" class="btn btn-danger float-right mx-1" data-toggle="modal" data-target="#popup_unsubmit_bill">Unsubmit  ATP Form for Lots</button> 
+                <button type="button" class="btn btn-danger float-right mx-1" data-toggle="modal" data-target="#popup_unsubmit_bill">Unsubmit  ATP Form for Lots</button>
                 @endif
                 @if(!$monthly_detail['verify_status'])
                 <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#popup_verify_bill">Verify ATP Form</button>
                 @endif
               @endif
               @if($user->hasRole('pec-admin'))
-           
+
                 <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#popup_approve_bill">Approve ATP Form</button>
-        
+
                 <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#popup_usapprove_bill">Un Approve ATP Form</button>
-             
+
               @endif
-              {{-- @if($user->hasRole('pec-user'))      
+              {{-- @if($user->hasRole('pec-user'))
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#popup_bill">Submit ATP Form</button>
               @endif       --}}
-              
-    
-    
-             
-    
+
+
+
+
+
             </div>
         </div>
 
@@ -403,13 +404,13 @@
 
 
 
-          
+
               </div>
             </div>
           </div>
-        </div>     
+        </div>
       </div>
-      
+
   </div>
 
 
@@ -448,7 +449,7 @@
         {
           $("#signature_error").hide();
         }
-        
+
         // Show the modal when the button is clicked
         $('#popup_bill').modal('show');
     });
@@ -472,6 +473,6 @@ tableContainer.addEventListener('scroll', () => {
 });
 
   </script>
-  
+
 
 @endsection
